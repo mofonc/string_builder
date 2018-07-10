@@ -7,8 +7,9 @@ typedef struct {
   size_t len;
   size_t size;
 } sb_t;
-
+#ifndef Default_string_builder_size
 #define Default_string_builder_size 8
+#endif
 sb_t *sb_new(size_t size);
 
 // free sb and sb->s
