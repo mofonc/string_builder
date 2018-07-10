@@ -2,11 +2,10 @@
 
 #include <stdlib.h>
 
-typedef struct {
-  char *s;
-  size_t len;
-  size_t size;
-} sb_t;
+#define SBAPI
+
+typedef struct sb_t sb_t;
+
 #ifndef Default_string_builder_size
 #define Default_string_builder_size 8
 #endif

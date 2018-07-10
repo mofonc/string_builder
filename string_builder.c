@@ -4,7 +4,13 @@
 
 #include "string_builder.h"
 
-sb_t *sb_new(size_t size) {
+struct sb_t {
+  char *s;
+  size_t len;
+  size_t size;
+};
+
+SBAPI sb_t *sb_new(size_t size) {
   if (size < Default_string_builder_size) {
     size = Default_string_builder_size;
   }
@@ -19,7 +25,7 @@ sb_t *sb_new(size_t size) {
 
 // free sb and sb->s
 // return must be free by caller
-char *sb_build(sb_t *sb) {
+SBAPI char *sb_build(sb_t *sb) {
   char *s = calloc(sb->len + 1, sizeof(char)); // free: @caller
   s = strncpy(s, sb->s, sb->len);
 
@@ -29,7 +35,7 @@ char *sb_build(sb_t *sb) {
   return s;
 }
 
-void sb_check(sb_t *sb, size_t size) {
+SBAPI void sb_check(sb_t *sb, size_t size) {
   if (size <= sb->size) {
     return;
   }
@@ -38,14 +44,14 @@ void sb_check(sb_t *sb, size_t size) {
   sb->size = size;
 }
 
-void sb_append_char(sb_t *sb, char c) {
+SBAPI void sb_append_char(sb_t *sb, char c) {
   sb_check(sb, sb->len + 1);
 
   sb->s[sb->len] = c;
   sb->len += 1;
 }
 
-void sb_append_raw(sb_t *sb, const char *raw) {
+SBAPI void sb_append_raw(sb_t *sb, const char *raw) {
   sb_check(sb, sb->len + strlen(raw));
   for (int i = 0; i < strlen(raw); i++) {
     sb_append_char(sb, raw[i]);
