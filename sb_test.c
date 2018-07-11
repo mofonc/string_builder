@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "string_builder.h"
+#include "sb.h"
 
 static char *t_err_msg = 0;
 static int t_err_ret = 0;

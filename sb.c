@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "string_builder.h"
+#include "sb.h"
 
 struct sb_t {
   char *s;
